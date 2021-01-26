@@ -1,7 +1,8 @@
 /* eslint-disable */
-
 import Vue from 'vue'
 import Vuex from 'vuex'
+
+import api from '@/api'
 
 import * as Identity from '@/util/identity.ts'
 
@@ -10,7 +11,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     username: '',
-    usertype: Identity.Unknown
+    usertype: Identity.Unknown,
+    name: ''
   },
   mutations: {
     setUsername (state, username) {
@@ -33,8 +35,9 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    async login ({ commit }: any, { username, password }: any) {
-      // TODO: login with username and password
+    async login ({ commit }: any, { username }: any) {
+      // TODO: login with username
+      api.user.login(username, '')
       commit('setUsername', username)
       commit('setIdentity', 'Administrator')
     },

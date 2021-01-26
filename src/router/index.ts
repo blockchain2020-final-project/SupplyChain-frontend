@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
+import Administrator from './administrator'
 
 Vue.use(VueRouter)
 
@@ -14,6 +15,7 @@ const routes: Array<RouteConfig> = [
     name: 'HomeDirect',
     component: () => import('@/views/Home.vue')
   },
+  ...Administrator,
   {
     path: '*',
     name: '404-not-found',

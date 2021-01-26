@@ -1,0 +1,5 @@
+export const getAdministratorInfo = 'administrator'
+export const registerAdministrator = 'administrator/regist'
+export const recycleCredit = 'administrator/recyclecredit'
+export const sendCredit = 'administrator/sendcredit'
+export const info = 'administrator'
