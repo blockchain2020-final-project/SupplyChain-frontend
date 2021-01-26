@@ -1,0 +1,5 @@
+export const createTransaction = 'core_companies/transactions'
+export const getCoreCompany = 'core_companies'
+export const createCoreCompany = 'core_companies'
+export const getAllCoreCompany = 'core_companies'
+export const getAllTransactions = 'core_companies'

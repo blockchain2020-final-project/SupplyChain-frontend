@@ -2,6 +2,7 @@ import * as administrator from './administrator'
 import * as bank from './bank'
 import * as certifier from './certifier'
 import * as api from './api'
+import * as company from './company'
 import http from '@/util/http'
 
 const user = {
@@ -17,5 +18,6 @@ export default {
   administrator,
   bank,
   certifier,
-  user
+  user,
+  company
 }
