@@ -7,7 +7,7 @@
             type="primary"
             icon="plus"
             @click="addCoreCompany()"
-            style="background-color: green; border-color: green;"
+            :disabled="identity !== 1"
           >
             添加核心企业
           </a-button>
@@ -247,6 +247,11 @@ export default {
         }
 
       ]
+    }
+  },
+  computed: {
+    identity () {
+      return this.$store.getters.getIdentity
     }
   },
   mounted () {

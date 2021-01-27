@@ -107,6 +107,8 @@ export default {
       const newVal = this.getIdentity
       if(newVal === Identity.Administrator) {
         this.menu = menu.Administrator
+      } else if(newVal === Identity.Bank) {
+        this.menu = menu.Bank
       } else {
         this.menu = {}
       }

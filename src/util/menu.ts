@@ -28,5 +28,20 @@ export default {
         description: '普通企业'
       }
     ]
+  },
+  Bank: {
+    selected: [],
+    menus: [
+      {
+        key: '/home/bank',
+        icon: 'user',
+        description: '我的信息'
+      },
+      {
+        key: '/home/bank/core-company',
+        icon: 'unordered-list',
+        description: '核心企业'
+      }
+    ]
   }
 }

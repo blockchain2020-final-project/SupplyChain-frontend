@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import Administrator from './administrator'
+import bank from './bank'
 
 Vue.use(VueRouter)
 
@@ -16,6 +17,7 @@ const routes: Array<RouteConfig> = [
     component: () => import('@/views/Home.vue')
   },
   ...Administrator,
+  ...bank,
   {
     path: '*',
     name: '404-not-found',
