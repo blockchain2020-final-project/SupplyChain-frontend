@@ -28,6 +28,8 @@ export default new Vuex.Store({
         id = Identity.CoreCompany
       } else if (identity === 'Company') {
         id = Identity.Company
+      } else if (identity === 'Certifier') {
+        id = Identity.Certifier
       } else {
         id = Identity.Unknown
       }
@@ -39,7 +41,7 @@ export default new Vuex.Store({
       // TODO: login with username
       api.user.login(username, '')
       commit('setUsername', username)
-      commit('setIdentity', 'Bank')
+      commit('setIdentity', 'Certifier')
     },
     async getCurrentUser({ commit }) {
       // TODO: use cookie to get current user

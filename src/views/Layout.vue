@@ -109,6 +109,8 @@ export default {
         this.menu = menu.Administrator
       } else if(newVal === Identity.Bank) {
         this.menu = menu.Bank
+      } else if(newVal === Identity.Certifier) {
+        this.menu = menu.Certifier
       } else {
         this.menu = {}
       }

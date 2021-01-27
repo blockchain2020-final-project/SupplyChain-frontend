@@ -7,7 +7,7 @@
             type="primary"
             icon="plus"
             @click="() => addingBank = true"
-            style="background-color: green; border-color: green;"
+            :disabled="identity !== 1"
           >
             添加银行
           </a-button>
@@ -24,7 +24,8 @@
           <a-button
             type="primary"
             @click="recycleCredit(record)"
-            style="background-color: red; border-color: red;"
+            ghost
+            :disabled="identity !== 1"
           >
             回收信用点
           </a-button>
@@ -34,7 +35,8 @@
           <a-button
             type="primary"
             @click="sendCredit(record)"
-            style="background-color: red; border-color: red;"
+            ghost
+            :disabled="identity !== 1"
           >
             发放信用点
           </a-button>
@@ -141,6 +143,11 @@ export default {
       amount: 0,
       sendingCredit: false,
       sendCreditRecord: {}
+    }
+  },
+  computed: {
+    identity () {
+      return this.$store.getters.getIdentity
     }
   },
   mounted () {

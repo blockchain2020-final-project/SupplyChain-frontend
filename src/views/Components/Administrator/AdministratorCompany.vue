@@ -7,7 +7,7 @@
             type="primary"
             icon="plus"
             @click="() => adding = true"
-            style="background-color: green; border-color: green;"
+            :disabled="identity !== 1"
           >
             添加普通企业
           </a-button>
@@ -123,6 +123,11 @@ export default {
           width: '13%'
         }
       ]
+    }
+  },
+  computed: {
+    identity () {
+      return this.$store.getters.getIdentity
     }
   },
   mounted () {

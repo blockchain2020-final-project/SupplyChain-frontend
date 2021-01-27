@@ -30,7 +30,7 @@ export default {
     ]
   },
   Bank: {
-    selected: [],
+    selected: ['/home/bank'],
     menus: [
       {
         key: '/home/bank',
@@ -41,6 +41,31 @@ export default {
         key: '/home/bank/core-company',
         icon: 'unordered-list',
         description: '核心企业'
+      }
+    ]
+  },
+  Certifier: {
+    selected: ['/home/certifier'],
+    menus: [
+      {
+        key: '/home/certifier',
+        icon: 'user',
+        description: '我的信息'
+      },
+      {
+        key: '/home/certifier/bank',
+        icon: 'bank',
+        description: '银行信息'
+      },
+      {
+        key: '/home/certifier/core-company',
+        icon: 'unordered-list',
+        description: '核心企业'
+      },
+      {
+        key: '/home/certifier/company',
+        icon: 'unordered-list',
+        description: '普通企业'
       }
     ]
   }

@@ -1,7 +1,7 @@
 <template>
   <div>
     <a-card title="我的信息" style="max-width: 40%">
-      <p>欢迎您，{{ name }} </p>
+      <p>欢迎您，{{ name }} (银行)</p>
       <p>账号地址：{{ addr }}</p>
       <p>得到的信用点: {{ inCredit }} </p>
       <p>已发放信用点: {{ outCredit }}</p>
