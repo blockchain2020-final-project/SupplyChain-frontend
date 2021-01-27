@@ -13,7 +13,7 @@ axios.interceptors.response.use(response => response, err => {
     message: `请求失败（${err?.response?.status || '无连接'}）`,
     description: err?.response?.data?.message || err?.response?.data?.msg || err?.response?.data || '服务器未返回数据',
     class: 'error',
-    duration: 6
+    duration: 3
   })
 
   // 将异常继续交给路由层处理
