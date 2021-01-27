@@ -18,7 +18,7 @@ export default {
         description: '监督机构'
       },
       {
-        key: '/home/administrator/core-compnay',
+        key: '/home/administrator/core-company',
         icon: 'unordered-list',
         description: '核心企业'
       },

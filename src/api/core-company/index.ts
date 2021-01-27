@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import * as api from './api'
 import http from '@/util/http'
 
@@ -28,4 +30,8 @@ export function getAllCoreCompany () {
 
 export function getAllTransactions (addr: string) {
   return http.get(`${api.getAllTransactions}/${addr}/transactions`)
+}
+
+export function getAllReceipt (addr: string) {
+  return http.get(`${api.getAllReceipts}/${addr}/receipts`)
 }

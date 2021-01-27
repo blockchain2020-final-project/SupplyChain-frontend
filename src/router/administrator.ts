@@ -13,5 +13,10 @@ export default [
     path: '/home/administrator/certifier',
     name: 'AdministratorCertifiers',
     component: () => import('@/views/Components/Administrator/AdministratorCertifier.vue')
+  },
+  {
+    path: '/home/administrator/core-company',
+    name: 'AdministratorCoreCompany',
+    component: () => import('@/views/Components/Administrator/AdministratorCoreCompany.vue')
   }
 ]

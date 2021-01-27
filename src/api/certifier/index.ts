@@ -16,3 +16,10 @@ export function createCertifier (cert_address: string, cert_name: string) {
 export function getAllCertifiers () {
   return http.get(api.getAllCertifiers)
 }
+
+export function sendCredit (core_company_address: string, amount: number) {
+  return http.post(api.sendCredit, {
+    core_company_address,
+    amount
+  })
+}
