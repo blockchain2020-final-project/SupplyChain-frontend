@@ -17,7 +17,7 @@ axios.interceptors.response.use(response => response, err => {
   })
 
   // 将异常继续交给路由层处理
-  return Promise.reject(err.response.data || { msg: '请求失败' })
+  return Promise.reject(err?.response?.data || { msg: '请求失败' })
 })
 
 export default axios

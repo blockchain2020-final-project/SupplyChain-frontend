@@ -8,5 +8,10 @@ export default [
     path: '/home/administrator/banks',
     name: 'AdministratorBank',
     component: () => import('@/views/Components/Administrator/AdministratorBank.vue')
+  },
+  {
+    path: '/home/administrator/certifier',
+    name: 'AdministratorCertifiers',
+    component: () => import('@/views/Components/Administrator/AdministratorCertifier.vue')
   }
 ]
