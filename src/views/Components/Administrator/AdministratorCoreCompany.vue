@@ -249,9 +249,12 @@ export default {
       ]
     }
   },
+  mounted () {
+    this.fetch()
+  },
   methods: {
     fetch () {
-      api.getAllCertifiers()
+      api.coreCompany.getAllCoreCompany()
         .then(res => {
           const core = res.data.data
           for (let i = 0; i<core.length; i++) {

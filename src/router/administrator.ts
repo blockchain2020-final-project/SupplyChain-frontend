@@ -18,5 +18,10 @@ export default [
     path: '/home/administrator/core-company',
     name: 'AdministratorCoreCompany',
     component: () => import('@/views/Components/Administrator/AdministratorCoreCompany.vue')
+  },
+  {
+    path: '/home/administrator/company',
+    name: 'AdministratorCompany',
+    component: () => import('@/views/Components/Administrator/AdministratorCompany.vue')
   }
 ]
