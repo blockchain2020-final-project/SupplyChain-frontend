@@ -26,7 +26,7 @@
           </a-input>
         </a-form-item>
         <a-form-item>
-          <a-button type="primary" html-type="submit" class="login-form-button">
+          <a-button type="primary" html-type="submit" class="login-form-button" block>
             登录
           </a-button>
         </a-form-item>
@@ -94,5 +94,9 @@ export default {
   border: 1px solid black;
   box-shadow: 8px 8px 3px #888888;
   background-color: #ffffff;
+}
+
+#form-title {
+  text-align: center;
 }
 </style>

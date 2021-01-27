@@ -3,7 +3,7 @@
     <a-layout id="components-layout-demo-top-side-2">
       <a-layout-header id="layout-header">
         <span class="title">
-          ABCDEFG 区块链金融管理系统
+          ABCDEFG 供应链金融管理系统
         </span>
         <span class="user-controller">
           <a-dropdown>
@@ -25,7 +25,7 @@
        <a-layout>
         <a-layout-sider
           width="200"
-          style="background: #fff"
+          style="background: #fff; text-align: center;"
           v-model="collapsed"
           theme="light"
         >
@@ -134,6 +134,7 @@ export default {
 #layout-header {
   background: rgb(243, 209, 170);
   border-bottom: 2px solid black;
+  text-align: center;
 }
 
 .title {
