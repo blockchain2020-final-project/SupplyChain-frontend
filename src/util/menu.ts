@@ -68,5 +68,30 @@ export default {
         description: '普通企业'
       }
     ]
+  },
+  CoreCompany: {
+    selected: ['/home/core-company'],
+    menus: [
+      {
+        key: '/home/core-company',
+        icon: 'user',
+        description: '我的信息'
+      },
+      {
+        key: '/home/core-company/transaction',
+        icon: 'unordered-list',
+        description: '我的交易'
+      },
+      {
+        key: '/home/core-company/finance',
+        icon: 'bank',
+        description: '银行贷款'
+      },
+      {
+        key: '/home/core-company/receipt',
+        icon: 'unordered-list',
+        description: '应收账单'
+      }
+    ]
   }
 }

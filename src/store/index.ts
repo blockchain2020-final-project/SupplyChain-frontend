@@ -41,7 +41,7 @@ export default new Vuex.Store({
       // TODO: login with username
       api.user.login(username, '')
       commit('setUsername', username)
-      commit('setIdentity', 'Certifier')
+      commit('setIdentity', 'CoreCompany')
     },
     async getCurrentUser({ commit }) {
       // TODO: use cookie to get current user

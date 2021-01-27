@@ -13,24 +13,24 @@
           </a-button>
         </a-col>
       </a-row>
-
-      <a-table
-        :columns="columns"
-        :row-key="record => record.index"
-        :data-source="companys"
-      >
-        <span slot="action" slot-scope="text, record">
-          <a-config-provider :auto-insert-space-in-button="false">
-            <a-button
-              type="primary"
-              @click="seeReceipts(record)"
-            >
-              查看应收账单
-            </a-button>
-          </a-config-provider>
-        </span>
-      </a-table>
     </div>
+
+    <a-table
+      :columns="columns"
+      :row-key="record => record.index"
+      :data-source="companys"
+    >
+      <span slot="action" slot-scope="text, record">
+        <a-config-provider :auto-insert-space-in-button="false">
+          <a-button
+            type="primary"
+            @click="seeReceipts(record)"
+          >
+            查看应收账单
+          </a-button>
+        </a-config-provider>
+      </span>
+    </a-table>
   </div>
 </template>
 

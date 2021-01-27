@@ -111,6 +111,8 @@ export default {
         this.menu = menu.Bank
       } else if(newVal === Identity.Certifier) {
         this.menu = menu.Certifier
+      } else if(newVal === Identity.CoreCompany) {
+        this.menu = menu.CoreCompany
       } else {
         this.menu = {}
       }

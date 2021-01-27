@@ -3,6 +3,7 @@ import VueRouter, { RouteConfig } from 'vue-router'
 import Administrator from './administrator'
 import bank from './bank'
 import certifier from './certifier'
+import coreCompany from './core-company'
 
 Vue.use(VueRouter)
 
@@ -20,6 +21,7 @@ const routes: Array<RouteConfig> = [
   ...Administrator,
   ...bank,
   ...certifier,
+  ...coreCompany,
   {
     path: '*',
     name: '404-not-found',
