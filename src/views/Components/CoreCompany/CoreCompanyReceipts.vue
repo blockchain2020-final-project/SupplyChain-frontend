@@ -76,7 +76,7 @@ export default {
             this.receipts = r
           })
       } else {
-        api.company.getAllReceipt(this.myAddr)
+        api.company.getAllReceipts(this.myAddr)
           .then(res => {
             const r = res.data.data
             this.receipts = r

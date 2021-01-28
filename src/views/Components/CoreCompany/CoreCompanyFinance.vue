@@ -104,6 +104,9 @@ export default {
       return this.$store.state.usertype === Identity.CoreCompany
     }
   },
+  mounted () {
+    this.fetch()
+  },
   methods: {
     fetch () {
       if(this.isCoreCompany) {

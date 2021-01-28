@@ -3,9 +3,8 @@
     <a-card title="我的信息" style="max-width: 40%">
       <p>欢迎您，{{ name }} (普通企业)</p>
       <p>账号地址：{{ addr }}</p>
-      <p>共收到信用点：{{ inCredit }}</p>
-      <p>共使用信用点：{{ outCredit }}</p>
-      <p>剩余信用点: {{ inCredit - outCredit }} </p>
+      <p>剩余信用点: {{ credit }} </p>
+      <p>可用金额：{{ cash }} </p>
     </a-card>
   </div>
 </template>
@@ -20,7 +19,9 @@ export default {
       name: '',
       addr: '',
       inCredit: '',
-      outCredit: ''
+      outCredit: '',
+      cash: 0,
+      credit: 0
     }
   },
   mounted () {
@@ -35,10 +36,12 @@ export default {
     fetch () {
       api.company.getCompany(this.myAddr)
         .then(res => {
-          this.name = res.data.data.name
-          this.addr = res.data.data.addr
-          this.inCredit = res.data.data.inCredit
-          this.outCredit = res.data.data.outCredit
+          this.name = res.data.data[0].name
+          this.addr = res.data.data[0].addr
+          this.inCredit = res.data.data[0].inCredit
+          this.outCredit = res.data.data[0].outCredit
+          this.cash = res.data.data[0].cashAmount
+          this.credit = res.data.data[0].creditAmount
         })
     }
   }

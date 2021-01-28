@@ -24,9 +24,9 @@ export default new Vuex.Store({
         id = Identity.Administrator
       } else if (identity === 'Bank') {
         id = Identity.Bank
-      } else if (identity === 'CoreCompany') {
+      } else if (identity === 'Company(Core)') {
         id = Identity.CoreCompany
-      } else if (identity === 'Company') {
+      } else if (identity === 'Company(Normal)') {
         id = Identity.Company
       } else if (identity === 'Certifier') {
         id = Identity.Certifier
@@ -39,13 +39,11 @@ export default new Vuex.Store({
   actions: {
     async login ({ commit }: any, { username }: any) {
       // TODO: login with username
-      api.user.login(username, '')
-        .then(res => {
-          const role = res.data.data.split(' ')[0]
-          console.log(role)
-          commit('setUsername', username)
-          commit('setIdentity', role)
-        })
+      const res = await api.user.login(username, '')
+      const role = res.data.data.split(' ')[0]
+      console.log(role)
+      commit('setUsername', username)
+      commit('setIdentity', role)
     },
     async getCurrentUser({ commit }) {
       commit('setUsername', '')

@@ -142,6 +142,7 @@ export default {
           })
             .then(() => {
               this.$message.success('提交成功')
+              this.adding = false
               this.fetch()
             })
         } else {
@@ -153,6 +154,7 @@ export default {
           })
             .then(() => {
               this.$message.success('提交成功')
+              this.adding = false
               this.fetch()
             })
         }
@@ -167,6 +169,7 @@ export default {
           })
             .then(() => {
               this.$message.success('提交成功')
+              this.adding = false
               this.fetch()
             })
         } else {
@@ -179,6 +182,7 @@ export default {
           })
             .then(() => {
               this.$message.success('提交成功')
+              this.adding = false
               this.fetch()
             })
         }

@@ -29,9 +29,9 @@
       :maskClosable="false"
       :destroyOnClose="true"
     >
-      <a-input placeholder="监督机构名字" v-model="certAddress"/>
+      <a-input placeholder="监督机构名字" v-model="certName"/>
       <p></p>
-      <a-input placeholder="监督机构地址" v-model="certName"/>
+      <a-input placeholder="监督机构地址" v-model="certAddress"/>
     </a-modal>
   </div>
 </template>

@@ -6,7 +6,7 @@
           <a-button
             type="primary"
             icon="plus"
-            @click="() => adding = true"
+            @click="addCompany()"
             :disabled="identity !== 1"
           >
             添加普通企业
@@ -31,6 +31,19 @@
         </a-config-provider>
       </span>
     </a-table>
+
+    <a-modal
+      v-model="adding"
+      title="添加普通"
+      @ok="addingConfirm"
+      :maskClosable="false"
+      :destroyOnClose="true"
+    >
+      <a-input placeholder="企业名" v-model="name"/>
+      <p></p>
+      <a-input placeholder="企业地址" v-model="addr"/>
+      <p></p>
+    </a-modal>
   </div>
 </template>
 
@@ -45,6 +58,8 @@ export default {
       seeingTransactions: false,
       companys: [],
       transactions: [],
+      name: '',
+      addr: '',
       columns: [
         {
           title: '序号',
@@ -137,7 +152,7 @@ export default {
     fetch () {
       api.company.getAllCompanies()
         .then(res => {
-          const companys = res.data.data
+          const companys = res.data.data || []
           for (let i = 0; i < companys.length; i++) {
             companys[i].index = i + 1
           }
@@ -149,6 +164,17 @@ export default {
       api.company.getAllTransactions(record.addr)
         .then(res => {
           this.transactions = res.data.data
+        })
+    },
+    addCompany () {
+      this.adding = true
+    },
+    addingConfirm () {
+      api.company.createCompany(this.addr, this.name)
+        .then(() => {
+          this.$message.success('操作成功')
+          this.adding = false
+          this.fetch()
         })
     }
   }

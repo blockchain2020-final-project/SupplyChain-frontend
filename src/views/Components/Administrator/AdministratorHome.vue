@@ -26,7 +26,8 @@ export default {
   created() {
     api.administrator.getInfo(this.addr)
       .then(res => {
-        this.outCredit = res.data.data[0].out_credit
+        console.log(res)
+        this.outCredit = res.data.data[0].outCredit
       })
   }
 }

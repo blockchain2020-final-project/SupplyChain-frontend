@@ -27,7 +27,7 @@ export function getCoreCompany (addr: string) {
 }
 
 export function createCoreCompany (company_address: string, company_name: string) {
-  return http.patch(api.createCoreCompany, {
+  return http.post(api.createCoreCompany, {
     company_name,
     company_address
   })

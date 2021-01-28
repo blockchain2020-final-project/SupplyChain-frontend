@@ -158,6 +158,7 @@ export default {
       api.bank.getAllBanks()
         .then(res => {
           const banks = res.data.data
+          console.log(banks)
           for(let i = 0; i<banks.length; i++) {
             banks[i].remainCredit = banks[i].inCredit - banks[i].outCredit
             banks[i].index = i + 1
@@ -177,6 +178,7 @@ export default {
           .then(() => {
             this.getAllBanks()
             this.$message.success('操作成功')
+            this.addingBank = false
           })
       }
     },
