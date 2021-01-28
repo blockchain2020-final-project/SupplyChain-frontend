@@ -33,3 +33,17 @@ export function sendCredit (bank_address: string, amount: number) {
     amount
   })
 }
+
+export function deposite (bankAddr: string, amount: number) {
+  return http.post(api.deposite, {
+    bankAddr,
+    amount
+  })
+}
+
+export function withdraw (bankAddr: string, amount: number) {
+  return http.post(api.withdraw, {
+    bankAddr,
+    amount
+  })
+}

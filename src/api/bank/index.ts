@@ -36,3 +36,21 @@ export function getAllFinances (addr: string) {
 export function getAllFinanceAsks (addr: string) {
   return http.get(`${api.getAllFinanceAsks}/${addr}/finances`)
 }
+
+export function deposite (addr: string, amount: number) {
+  return http.post(api.deposite, {
+    companyAddr: addr,
+    amount
+  })
+}
+
+export function withdraw (addr: string, amount: number) {
+  return http.post(api.withdraw, {
+    companyAddr: addr,
+    amount
+  })
+}
+
+export function response (body: any) {
+  return http.post(api.respond, body)
+}

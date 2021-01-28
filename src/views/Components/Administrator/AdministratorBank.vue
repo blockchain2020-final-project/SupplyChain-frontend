@@ -2,7 +2,7 @@
   <div>
     <div style="height: 40px">
       <a-row>
-        <a-col :span="3" :offset="21">
+        <a-col :span="3" :offset="17">
           <a-button
             type="primary"
             icon="plus"
@@ -10,6 +10,16 @@
             :disabled="identity !== 1"
           >
             添加银行
+          </a-button>
+        </a-col>
+        <a-col :span="3">
+          <a-button
+            type="primary"
+            icon="plus"
+            @click="() => addingMoney = true"
+            :disabled="identity !== 1"
+          >
+            金额变动
           </a-button>
         </a-col>
       </a-row>
@@ -88,6 +98,19 @@
       <p></p>
       <a-input placeholder="发放信用点" v-model="amount"/>
     </a-modal>
+
+    <a-modal
+      v-model="addingMoney"
+      title="金额变动"
+      @ok="addingMoneyConfirm"
+      :maskClosable="false"
+      :destroyOnClose="true"
+    >
+      <a-input placeholder="银行地址" v-model="addingAddr"/>
+      <p></p>
+      <a-input placeholder="发放金额" v-model="addingAmount"/>
+      <p></p>
+    </a-modal>
   </div>
 </template>
 
@@ -137,7 +160,10 @@ export default {
       recycleCreditRecord: {},
       amount: 0,
       sendingCredit: false,
-      sendCreditRecord: {}
+      sendCreditRecord: {},
+      addingMoney: false,
+      addingAddr: '',
+      addingAmount: 0
     }
   },
   computed: {
@@ -210,6 +236,21 @@ export default {
     sendCredit (record) {
       this.sendingCredit = true
       this.sendCreditRecord = record
+    },
+    addingMoneyConfirm () {
+      if(this.addingAmount > 0) {
+        api.administrator.deposite(this.addingAddr, this.addingAmount)
+          .then(() => {
+            this.$message.success('操作成功')
+            this.addingAmount = false
+          })
+      } else {
+        api.administrator.withdraw(this.addingAddr, -this.addingAmount)
+          .then(() => {
+            this.$message.success('操作成功')
+            this.addingAmount = false
+          })
+      }
     }
   }
 }

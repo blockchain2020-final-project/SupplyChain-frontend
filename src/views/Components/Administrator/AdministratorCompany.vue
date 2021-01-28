@@ -97,13 +97,13 @@ export default {
           width: '10%'
         },
         {
-          title: '总获得信用点',
-          dataIndex: 'inCredit',
+          title: '总信用点',
+          dataIndex: 'creditAmount',
           width: '10%'
         },
         {
-          title: '已使用信用点',
-          dataIndex: 'outCredit',
+          title: '可用金额',
+          dataIndex: 'cashAmount',
           width: '10%'
         },
         {

@@ -1,10 +1,40 @@
 <template>
-  <a-table
-    :columns="fcolumns"
-    :row-key="record => record.id"
-    :data-source="finances"
-  >
-  </a-table>
+  <div>
+    <div style="height: 40px">
+      <a-row>
+        <a-col :span="3" :offset="21">
+          <a-button
+            type="primary"
+            icon="plus"
+            @click="() => addingAmount = true"
+          >
+            金额变动
+          </a-button>
+        </a-col>
+      </a-row>
+    </div>
+
+    <a-table
+      :columns="fcolumns"
+      :row-key="record => record.id"
+      :data-source="finances"
+    >
+    </a-table>
+
+    <a-modal
+      v-model="addingAmount"
+      title="金额变动"
+      @ok="addingConfirm"
+      :maskClosable="false"
+      :destroyOnClose="true"
+    >
+      <a-input placeholder="企业地址" v-model="addr"/>
+      <p></p>
+      <a-input placeholder="账款" v-model="amount"/>
+      <p></p>
+    </a-modal>
+  </div>
+  
 </template>
 
 <script>
@@ -14,6 +44,9 @@ export default {
   name: 'BankFinanceDetail',
   data () {
     return {
+      addingAmount: false,
+      addr: '',
+      amount: '',
       finances: [],
       fcolumns: [
         {
@@ -54,6 +87,23 @@ export default {
         .then(res => {
           this.finances = res.data.data
         })
+    },
+    addingConfirm () {
+      if(this.amount > 0) {
+        api.bank.deposite(this.addr, this.amount)
+          .then(() => {
+            this.$message.success('操作成功')
+            this.addingAmount = false
+            this.fetch()
+          })
+      } else {
+        api.bank.withdraw(this.addr, this.amount)
+          .then(() => {
+            this.$message.success('操作成功')
+            this.addingAmount = false
+            this.fetch()
+          })
+      }
     }
   }
 }

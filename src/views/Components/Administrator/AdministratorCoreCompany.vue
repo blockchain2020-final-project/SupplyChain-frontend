@@ -147,12 +147,12 @@ export default {
         },
         {
           title: '总信用点',
-          dataIndex: 'inCredit',
+          dataIndex: 'creditAmount',
           width: '10%'
         },
         {
           title: '可用金额',
-          dataIndex: 'outCredit',
+          dataIndex: 'cashAmount',
           width: '10%'
         },
         {

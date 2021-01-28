@@ -43,6 +43,11 @@ export default {
         description: '核心企业'
       },
       {
+        key: '/home/bank/company',
+        icon: 'unordered-list',
+        description: '普通企业'
+      },
+      {
         key: '/home/bank/finance/detail',
         icon: 'unordered-list',
         description: '贷款情况'

@@ -10,6 +10,11 @@ export default [
     component: () => import('@/views/Components/Administrator/AdministratorCoreCompany.vue')
   },
   {
+    path: '/home/bank/company',
+    name: 'BankCompany',
+    component: () => import('@/views/Components/Administrator/AdministratorCompany.vue')
+  },
+  {
     path: '/home/bank/finance/detail',
     name: 'BankFinanceDetail',
     component: () => import('@/views/Components/Bank/BankFinanceDetail.vue')
