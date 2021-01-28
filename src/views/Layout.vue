@@ -113,6 +113,8 @@ export default {
         this.menu = menu.Certifier
       } else if(newVal === Identity.CoreCompany) {
         this.menu = menu.CoreCompany
+      } else if(newVal === Identity.Company) {
+        this.menu = menu.Company
       } else {
         this.menu = {}
       }

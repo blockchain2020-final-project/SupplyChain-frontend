@@ -4,6 +4,7 @@ import Administrator from './administrator'
 import bank from './bank'
 import certifier from './certifier'
 import coreCompany from './core-company'
+import company from './company'
 
 Vue.use(VueRouter)
 
@@ -22,6 +23,7 @@ const routes: Array<RouteConfig> = [
   ...bank,
   ...certifier,
   ...coreCompany,
+  ...company,
   {
     path: '*',
     name: '404-not-found',

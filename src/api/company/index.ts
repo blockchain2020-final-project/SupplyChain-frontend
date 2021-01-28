@@ -21,3 +21,23 @@ export function getAllCompanies () {
 export function getAllTransactions (addr: string) {
   return http.get(`${api.getAllTransactions}/${addr}/transactions`)
 }
+
+export function createFinance (body: any) {
+  return http.post(api.createFinance, body)
+}
+
+export function getAllFinances (addr: string) {
+  return http.get(`${api.getAllFinance}/${addr}/finances`)
+}
+
+export function getAllReceipts (addr: string) {
+  return http.get(`${api.getAllReceipts}/${addr}/receipts`)
+}
+
+export function createTransactionNew (body: any) {
+  return http.post(api.createTransactionNew, body)
+}
+
+export function createTransactionOld (body: any) {
+  return http.post(api.createTransactionOld, body)
+}

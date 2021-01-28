@@ -5,7 +5,7 @@ const baseURL = 'http://39.99.211.12:3000'  // 后端api前缀
 
 axios.defaults.baseURL = baseURL
 axios.defaults.responseType = 'json'
-// axios.defaults.withCredentials = true
+axios.defaults.withCredentials = true
 
 axios.interceptors.response.use(response => response, err => {
   // 在这里统一处理异常

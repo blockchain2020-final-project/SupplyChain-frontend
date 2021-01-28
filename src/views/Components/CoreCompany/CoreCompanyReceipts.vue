@@ -10,6 +10,7 @@
 
 <script>
 import api from '@/api'
+import * as Identity from '@/util/identity'
 
 export default {
   name: 'CoreCompanyReceipts',
@@ -58,13 +59,29 @@ export default {
   mounted () {
     this.fetch()
   },
+  computed: {
+    isCoreCompany () {
+      return this.$store.state.usertype === Identity.CoreCompany
+    },
+    myAddr () {
+      return this.$store.state.username
+    },
+  },
   methods: {
     fetch () {
-      api.coreCompany.getAllReceipt()
-        .then(res => {
-          const r = res.data.data
-          this.receipts = r
-        })
+      if(this.isCoreCompany) {
+        api.coreCompany.getAllReceipt(this.myAddr)
+          .then(res => {
+            const r = res.data.data
+            this.receipts = r
+          })
+      } else {
+        api.company.getAllReceipt(this.myAddr)
+          .then(res => {
+            const r = res.data.data
+            this.receipts = r
+          })
+      }
     }
   }
 }

@@ -43,6 +43,7 @@
 
 <script>
 import api from '@/api'
+import * as Identity from '@/util/identity'
 
 export default {
   name: 'CoreCompanyTransaction',
@@ -97,6 +98,9 @@ export default {
   computed: {
     myAddr () {
       return this.$store.state.username
+    },
+    isCoreCompany () {
+      return this.$store.state.usertype === Identity.CoreCompany
     }
   },
   mounted () {
@@ -104,42 +108,80 @@ export default {
   },
   methods: {
     fetch () {
-      api.coreCompany.getAllTransactions(this.myAddr)
-        .then(res => {
-          const transactions = res.data.data
-          for (let i = 0; i < transactions.length; i++) {
-            transactions[i].index = i + 1
-          }
-          this.transactions = transactions
-        })
+      if(this.isCoreCompany) {
+        api.coreCompany.getAllTransactions(this.myAddr)
+          .then(res => {
+            const transactions = res.data.data
+            for (let i = 0; i < transactions.length; i++) {
+              transactions[i].index = i + 1
+            }
+            this.transactions = transactions
+          })
+      } else {
+        api.company.getAllTransactions(this.myAddr)
+          .then(res => {
+            const transactions = res.data.data
+            for (let i = 0; i < transactions.length; i++) {
+              transactions[i].index = i + 1
+            }
+            this.transactions = transactions
+          })
+      }
     },
     addTransaction () {
       this.adding = true
     },
     addingConfirm () {
       if(this.oriReceiptId) {
-        api.coreCompany.createTransactionNew({
-          payeeAddr: this.otherAddr,
-          amount: this.amount,
-          deadline: this.deadline,
-          info: this.info
-        })
-          .then(() => {
-            this.$message.success('提交成功')
-            this.fetch()
+        if(this.isCoreCompany) {
+          api.coreCompany.createTransactionNew({
+            payeeAddr: this.otherAddr,
+            amount: this.amount,
+            deadline: this.deadline,
+            info: this.info
           })
+            .then(() => {
+              this.$message.success('提交成功')
+              this.fetch()
+            })
+        } else {
+          api.company.createTransactionNew({
+            payeeAddr: this.otherAddr,
+            amount: this.amount,
+            deadline: this.deadline,
+            info: this.info
+          })
+            .then(() => {
+              this.$message.success('提交成功')
+              this.fetch()
+            })
+        }
       } else {
-        api.coreCompany.createTransactionOld({
-          payeeAddr: this.otherAddr,
-          amount: this.amount,
-          deadline: this.deadline,
-          info: this.info,
-          oriReceiptId: this.oriReceiptId
-        })
-          .then(() => {
-            this.$message.success('提交成功')
-            this.fetch()
+        if(this.isCoreCompany) {
+          api.coreCompany.createTransactionOld({
+            payeeAddr: this.otherAddr,
+            amount: this.amount,
+            deadline: this.deadline,
+            info: this.info,
+            oriReceiptId: this.oriReceiptId
           })
+            .then(() => {
+              this.$message.success('提交成功')
+              this.fetch()
+            })
+        } else {
+          api.company.createTransactionOld({
+            payeeAddr: this.otherAddr,
+            amount: this.amount,
+            deadline: this.deadline,
+            info: this.info,
+            oriReceiptId: this.oriReceiptId
+          })
+            .then(() => {
+              this.$message.success('提交成功')
+              this.fetch()
+            })
+        }
       }
     }
   }

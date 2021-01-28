@@ -93,5 +93,30 @@ export default {
         description: '应收账单'
       }
     ]
+  },
+  Company: {
+    selected: ['/home/company'],
+    menus: [
+      {
+        key: '/home/company',
+        icon: 'user',
+        description: '我的信息'
+      },
+      {
+        key: '/home/company/transaction',
+        icon: 'unordered-list',
+        description: '我的交易'
+      },
+      {
+        key: '/home/company/finance',
+        icon: 'bank',
+        description: '银行贷款'
+      },
+      {
+        key: '/home/company/receipt',
+        icon: 'unordered-list',
+        description: '应收账单'
+      }
+    ]
   }
 }

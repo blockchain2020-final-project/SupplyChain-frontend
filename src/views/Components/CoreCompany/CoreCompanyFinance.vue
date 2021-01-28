@@ -45,6 +45,7 @@
 
 <script>
 import api from '@/api'
+import * as Identity from '@/util/identity'
 
 export default {
   name: 'CoreCompanyFinance',
@@ -98,27 +99,47 @@ export default {
   computed: {
     myAddr () {
       return this.$store.state.username
+    },
+    isCoreCompany () {
+      return this.$store.state.usertype === Identity.CoreCompany
     }
   },
   methods: {
     fetch () {
-      api.coreCompany.getAllFinance()
-        .then(res => {
-          const f = res.data.data
-          this.finances = f
-        })
+      if(this.isCoreCompany) {
+        api.coreCompany.getAllFinance(this.myAddr)
+          .then(res => {
+            const f = res.data.data
+            this.finances = f
+          })
+      } else {
+        api.company.getAllFinances(this.myAddr)
+          .then(res => {
+            this.finances = res.data.data
+          })
+      }
     },
     addFinance () {
       this.adding = true
     },
     addingConfirm () {
-      api.coreCompany.createFinance({
-        payeeAddr: this.payeeAddr,
-        amount: this.amount,
-        deadline: this.deadline,
-        oriReceiptId: this.oriReceiptId,
-        info: this.info
-      })
+      if(this.isCoreCompany) {
+        api.coreCompany.createFinance({
+          payeeAddr: this.payeeAddr,
+          amount: this.amount,
+          deadline: this.deadline,
+          oriReceiptId: this.oriReceiptId,
+          info: this.info
+        })
+      } else {
+        api.company.createFinance({
+          payeeAddr: this.payeeAddr,
+          amount: this.amount,
+          deadline: this.deadline,
+          oriReceiptId: this.oriReceiptId,
+          info: this.info
+        })
+      }
     }
   }
 }
