@@ -43,12 +43,9 @@ export default new Vuex.Store({
         .then(res => {
           const role = res.data.data.split(' ')[0]
           console.log(role)
-          
+          commit('setUsername', username)
+          commit('setIdentity', role)
         })
-      commit('setUsername', username)
-      commit('setIdentity', 'Company')
-      console.log(this.state.usertype)
-        
     },
     async getCurrentUser({ commit }) {
       commit('setUsername', '')
