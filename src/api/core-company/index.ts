@@ -42,7 +42,7 @@ export function getAllTransactions (addr: string) {
 }
 
 export function getAllReceipt (addr: string) {
-  return http.get(`${api.getAllReceipts}/${addr}/receipts`)
+  return http.get(`${api.getAllReceipts}/${addr}/unsettledreceipts`)
 }
 
 export function createFinance (body: any) {
@@ -50,5 +50,5 @@ export function createFinance (body: any) {
 }
 
 export function getAllFinance (addr: string) {
-  return http.get(`${api.getAllFinance}/${addr}/finances`)
+  return http.get(`${api.getAllFinance}/${addr}/unpaidfinances`)
 }

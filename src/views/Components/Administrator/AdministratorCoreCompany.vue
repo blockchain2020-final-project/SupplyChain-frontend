@@ -325,7 +325,7 @@ export default {
             this.sendingCredit = false
           })
         } else {
-          this.$message.error('您没有权限发送信用点')
+          this.$message.error('您没有权限发送信用点(要求：银行）')
         }
       }
     }

@@ -75,7 +75,7 @@ export default {
   },
   methods: {
     fetch () {
-      api.bank.getAllFinanceAsks()
+      api.bank.getAllFinanceAsks(this.$store.state.username)
         .then(res => {
           this.finances = res.data.data
         })

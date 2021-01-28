@@ -82,8 +82,11 @@ export default {
     }
   },
   methods: {
+    mounted () {
+      this.fetch()
+    },
     fetch () {
-      api.bank.getAllFinances()
+      api.bank.getAllFinances(this.$store.state.username)
         .then(res => {
           this.finances = res.data.data
         })

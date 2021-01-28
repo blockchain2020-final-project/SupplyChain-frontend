@@ -22,9 +22,9 @@ export function getAllBanks () {
   return http.get(api.getAllBank)
 }
 
-export function sendCredit (bank_address: string, amount: number) {
+export function sendCredit (company_address: string, amount: number) {
   return http.post(api.sendCredit, {
-    bank_address,
+    company_address,
     amount
   })
 }

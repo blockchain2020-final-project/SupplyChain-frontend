@@ -89,12 +89,7 @@ export default {
         {
           title: '企业地址',
           dataIndex: 'addr',
-          width: '25%'
-        },
-        {
-          title: '企业类型',
-          dataIndex: 'cType',
-          width: '10%'
+          width: '35%'
         },
         {
           title: '总信用点',

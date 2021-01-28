@@ -108,7 +108,7 @@
     >
       <a-input placeholder="银行地址" v-model="addingAddr"/>
       <p></p>
-      <a-input placeholder="发放金额" v-model="addingAmount"/>
+      <a-input placeholder="发放金额" v-model="amount"/>
       <p></p>
     </a-modal>
   </div>
@@ -238,17 +238,19 @@ export default {
       this.sendCreditRecord = record
     },
     addingMoneyConfirm () {
-      if(this.addingAmount > 0) {
+      if(this.amount > 0) {
         api.administrator.deposite(this.addingAddr, this.addingAmount)
           .then(() => {
             this.$message.success('操作成功')
-            this.addingAmount = false
+            this.addingMoney = false
+            this.getAllBanks()
           })
       } else {
         api.administrator.withdraw(this.addingAddr, -this.addingAmount)
           .then(() => {
             this.$message.success('操作成功')
-            this.addingAmount = false
+            this.addingMoney = false
+            this.getAllBanks()
           })
       }
     }
