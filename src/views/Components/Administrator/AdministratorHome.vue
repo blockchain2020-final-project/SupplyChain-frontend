@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a-card title="我的信息" style="max-width: 40%">
+    <a-card title="我的信息" style="max-width: 40%; min-width: 300px">
       <p>欢迎您，管理员</p>
       <p>账号地址：{{ addr }}</p>
       <p>已发放信用点: {{ outCredit }}</p>
@@ -24,9 +24,9 @@ export default {
     }
   },
   created() {
-    api.administrator.getInfo()
+    api.administrator.getInfo(this.addr)
       .then(res => {
-        this.outCredit = res.data.data.out_credit
+        this.outCredit = res.data.data[0].out_credit
       })
   }
 }

@@ -3,14 +3,23 @@
 import * as api from './api'
 import http from '@/util/http'
 
-export function createTransaction (body: {
-  sellerAddr: string,
-  amount: string,
-  deadline: string,
-  tMode: string,
+export function createTransactionNew (body: {
+  payeeAddr: string,
+  amount: number,
+  deadline: number,
+  info: string
+}) {
+  return http.post(api.createTransactionNew, body)
+}
+
+export function createTransactionOld (body: {
+  payeeAddr: string,
+  amount: number,
+  deadline: number,
+  info: string,
   oriReceiptId: string
 }) {
-  return http.post(api.createTransaction, body)
+  return http.post(api.createTransactionOld, body)
 }
 
 export function getCoreCompany (addr: string) {
@@ -34,4 +43,12 @@ export function getAllTransactions (addr: string) {
 
 export function getAllReceipt (addr: string) {
   return http.get(`${api.getAllReceipts}/${addr}/receipts`)
+}
+
+export function createFinance (body: any) {
+  return http.post(api.createFinance, body)
+}
+
+export function getAllFinance (addr: string) {
+  return http.get(`${api.getAllFinance}/${addr}/finances`)
 }

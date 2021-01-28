@@ -10,7 +10,6 @@ const user = {
   login: (addr: string, type: string) => {
     return http.post(api.login, {
       addr,
-      type
     })
   }
 }

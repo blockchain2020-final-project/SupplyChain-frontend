@@ -40,23 +40,25 @@ export default new Vuex.Store({
     async login ({ commit }: any, { username }: any) {
       // TODO: login with username
       api.user.login(username, '')
-      commit('setUsername', username)
-      commit('setIdentity', 'CoreCompany')
+        .then(res => {
+          const role = res.data.data.split(' ')[0]
+          console.log(role)
+          commit('setUsername', username)
+          commit('setIdentity', role)
+        })
     },
     async getCurrentUser({ commit }) {
-      // TODO: use cookie to get current user
       commit('setUsername', '')
       commit('setIdentity', null)
     },
     async logout({ commit }) {
-      // TODO: use cookie to logout
       commit('setUsername', '')
       commit('setIdentity', null)
     }
   },
   getters: {
     isLogined (state) {
-      return state.username !== ''
+      return state.username !== '' && state.usertype !== Identity.Unknown
     },
     getIdentity (state) {
       return state.usertype
