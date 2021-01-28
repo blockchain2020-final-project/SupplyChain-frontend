@@ -33,7 +33,7 @@ export default {
         .then(res => {
           const {
             name, addr, inCredit, outCredit, cashAmount, creditAmount
-          } = res.data.data
+          } = res.data.data[0]
           this.name = name
           this.addr = addr
           this.inCredit = inCredit
