@@ -31,6 +31,8 @@
           </a-button>
         </a-config-provider>
 
+        <a-divider type="vertical" />
+
         <a-config-provider :auto-insert-space-in-button="false">
           <a-button
             type="primary"
@@ -66,12 +68,12 @@
     >
       <a-input placeholder="银行地址" v-model="recycleCreditRecord.addr" disabled/>
       <p></p>
-      <a-input :placeholder="`已有信用点${recycleCreditRecord.inCredit}`" disabled/>
-      <p></p>
-      <a-input :placeholder="`剩余信用点${recycleCreditRecord.remainCredit}`" disabled/>
+      <a-input :placeholder="`已有信用点${recycleCreditRecord.creditAmount}`" disabled/>
       <p></p>
       <a-input placeholder="回收信用点" v-model="amount"/>
     </a-modal>
+
+    <a-divider type="vertical" />
 
     <a-modal
       v-model="sendingCredit"
@@ -82,9 +84,7 @@
     >
       <a-input placeholder="银行地址" v-model="sendCreditRecord.addr" disabled/>
       <p></p>
-      <a-input :placeholder="`已有信用点${sendCreditRecord.inCredit}`" disabled/>
-      <p></p>
-      <a-input :placeholder="`剩余信用点${sendCreditRecord.remainCredit}`" disabled/>
+      <a-input :placeholder="`已有信用点: ${sendCreditRecord.creditAmount}`" disabled/>
       <p></p>
       <a-input placeholder="发放信用点" v-model="amount"/>
     </a-modal>
@@ -113,21 +113,16 @@ export default {
         {
           title: '银行地址',
           dataIndex: 'addr',
-          width: '28%'
+          width: '32%'
         },
         {
-          title: '总信用点',
-          dataIndex: 'inCredit',
+          title: '信用点',
+          dataIndex: 'creditAmount',
           width: '11%'
         },
         {
-          title: '已分配信用点',
-          dataIndex: 'outCredit',
-          width: '11%'
-        },
-        {
-          title: '可用信用点',
-          dataIndex: 'remainCredit',
+          title: '可用金额',
+          dataIndex: 'cashAmount',
           width: '11%'
         },
         {

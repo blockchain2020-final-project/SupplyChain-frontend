@@ -41,6 +41,16 @@ export default {
         key: '/home/bank/core-company',
         icon: 'unordered-list',
         description: '核心企业'
+      },
+      {
+        key: '/home/bank/finance/detail',
+        icon: 'unordered-list',
+        description: '贷款情况'
+      },
+      {
+        key: '/home/bank/finance/ask',
+        icon: 'unordered-list',
+        description: '贷款申请'
       }
     ]
   },

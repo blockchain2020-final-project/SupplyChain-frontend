@@ -8,5 +8,15 @@ export default [
     path: '/home/bank/core-company',
     name: 'BankCoreCompany',
     component: () => import('@/views/Components/Administrator/AdministratorCoreCompany.vue')
+  },
+  {
+    path: '/home/bank/finance/detail',
+    name: 'BankFinanceDetail',
+    component: () => import('@/views/Components/Bank/BankFinanceDetail.vue')
+  },
+  {
+    path: '/home/bank/finance/ask',
+    name: 'BankFinanceAsk',
+    component: () => import('@/views/Components/Bank/BankFinanceAsk.vue')
   }
 ]

@@ -28,3 +28,11 @@ export function sendCredit (bank_address: string, amount: number) {
     amount
   })
 }
+
+export function getAllFinances (addr: string) {
+  return http.get(`${api.getAllFinances}/${addr}/unsettledfinances`)
+}
+
+export function getAllFinanceAsks (addr: string) {
+  return http.get(`${api.getAllFinanceAsks}/${addr}/finances`)
+}

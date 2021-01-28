@@ -17,7 +17,19 @@ export default {
     ])
   },
   mounted () {
-    if (this.isLogined === false) {
+    this.directed()
+  },
+  watch: {
+    getIdentity () {
+      this.directed()
+    },
+    isLogined () {
+      this.directed()
+    }
+  },
+  methods: {
+    directed () {
+      if (this.isLogined === false) {
       this.$router.push('/')
     } else {
       if (this.getIdentity === Identity.Administrator) {
@@ -33,6 +45,7 @@ export default {
       } else {
         this.$router.push('/');
       }
+    }
     }
   }
 }

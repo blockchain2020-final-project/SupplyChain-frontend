@@ -19,7 +19,6 @@
               'username',
               { rules: [{ required: true, message: '请输入登录所需哈希' }] },
             ]"
-            type="password"
             placeholder="登录地址"
           >
             <a-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)" />

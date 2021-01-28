@@ -7,7 +7,6 @@
             type="primary"
             icon="plus"
             @click="addCompany()"
-            :disabled="identity !== 1"
           >
             添加普通企业
           </a-button>
@@ -34,7 +33,7 @@
 
     <a-modal
       v-model="adding"
-      title="添加普通"
+      title="添加普通企业"
       @ok="addingConfirm"
       :maskClosable="false"
       :destroyOnClose="true"
@@ -43,6 +42,22 @@
       <p></p>
       <a-input placeholder="企业地址" v-model="addr"/>
       <p></p>
+    </a-modal>
+
+    <a-modal
+      v-model="seeingTransactions"
+      title="查看应收账单"
+      @ok="() => seeingTransactions = false" 
+      :maskClosable="false"
+      :destroyOnClose="true"
+      :width="1380"
+    >
+      <a-table
+        :columns="tcolumns"
+        :row-key="record => record.id"
+        :data-source="transactions"
+      >
+      </a-table>
     </a-modal>
   </div>
 </template>
@@ -123,19 +138,14 @@ export default {
           width: '12%'
         },
         {
-          title: '交易模式',
-          dataIndex: 'tMode',
-          width: '5%'
-        },
-        {
           title: '应收账款Id',
           dataIndex: 'oriReceiptId',
-          width: '5%'
+          width: '17%'
         },
         {
-          title: '请求状态',
+          title: '状态',
           dataIndex: 'requestStatus',
-          width: '13%'
+          width: '8%'
         }
       ]
     }

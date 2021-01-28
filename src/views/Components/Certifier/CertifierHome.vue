@@ -25,8 +25,8 @@ export default {
     fetch () {
       api.certifier.getCertifier(this.$store.state.username)
         .then(res => {
-          this.name = res.data.data.name
-          this.addr = res.data.data.addr
+          this.name = res.data.data[0].name
+          this.addr = res.data.data[0].addr
         })
     }
   }

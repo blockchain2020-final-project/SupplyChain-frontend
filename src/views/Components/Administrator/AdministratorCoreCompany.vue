@@ -7,7 +7,6 @@
             type="primary"
             icon="plus"
             @click="addCoreCompany()"
-            :disabled="identity !== 1"
           >
             添加核心企业
           </a-button>
@@ -31,6 +30,8 @@
           </a-button>
         </a-config-provider>
 
+        <a-divider type="vertical" />
+
         <a-config-provider :auto-insert-space-in-button="false">
           <a-button
             type="primary"
@@ -39,6 +40,8 @@
             查看交易
           </a-button>
         </a-config-provider>
+
+        <a-divider type="vertical" />
 
         <a-config-provider :auto-insert-space-in-button="false">
           <a-button
@@ -79,11 +82,12 @@
     </a-modal>
 
     <a-modal
-      v-modal="seeingTransaction"
+      v-model="seeingTransaction"
       title="查看交易账单"
       @ok="() => seeingTransaction = false"
       :maskClosable="false"
       :destroyOnClose="true"
+      :width="1380"
     >
       <a-table
         :columns="tcolumns"
@@ -93,11 +97,12 @@
     </a-modal>
 
     <a-modal
-      v-modal="seeingReceipt"
+      v-model="seeingReceipt"
       title="查看应收账单"
       @ok="() => seeingReceipt = false"
       :maskClosable="false"
       :destroyOnClose="true"
+      :width="1380"
     >
       <a-table
         :columns="rcolumns"
@@ -141,12 +146,12 @@ export default {
           width: '24%'
         },
         {
-          title: '总分配信用点',
+          title: '总信用点',
           dataIndex: 'inCredit',
           width: '10%'
         },
         {
-          title: '已发放信用点',
+          title: '可用金额',
           dataIndex: 'outCredit',
           width: '10%'
         },
@@ -175,27 +180,22 @@ export default {
         {
           title: '账款',
           dataIndex: 'amount',
-          width: '10%'
+          width: '8%'
         },
         {
           title: '发起时间',
           dataIndex: 'createTime',
-          width: '15%'
-        },
-        {
-          title: '交易模式',
-          dataIndex: 'tMode',
-          width: '5%'
+          width: '11%'
         },
         {
           title: '应收账款Id',
           dataIndex: 'oriReceiptId',
-          width: '5%'
+          width: '17%'
         },
         {
           title: '请求状态',
           dataIndex: 'requestStatus',
-          width: '8%'
+          width: '7%'
         }
       ],
       receipts: [],
@@ -208,22 +208,22 @@ export default {
         {
           title: '借款方地址',
           dataIndex: 'debtorAddr',
-          width: '18%'
+          width: '24%'
         },
         {
           title: '收款方地址',
           dataIndex: 'debteeAddr',
-          width: '18%'
+          width: '24%'
         },
         {
           title: '已还账款',
           dataIndex: 'curAmount',
-          width: '6%'
+          width: '7%'
         },
         {
           title: '账款总额',
           dataIndex: 'oriAmount',
-          width: '6%'
+          width: '7%'
         },
         {
           title: '发起时间',
@@ -240,12 +240,6 @@ export default {
           dataIndex: 'bankSignature',
           width: '18%'
         },
-        {
-          title: '核心企业签名',
-          dataIndex: 'coreCompanySignature',
-          width: '18%'
-        }
-
       ]
     }
   },
@@ -279,7 +273,7 @@ export default {
       this.sendingCredit = true
       this.record = record
     },
-    seeTransaction (record) {
+    seeTransactions (record) {
       this.seeingTransaction = true
       this.record = record
       this.transactions = []
@@ -317,7 +311,7 @@ export default {
       if (amount <= 0) {
         this.$message.error('请提供正确的参数')
       } else {
-        const identity = this.$store.getters.getIdentity()
+        const identity = this.$store.getters.getIdentity
         let promise = null;
         if (identity === Identity.Bank) {
           promise = api.bank.sendCredit(addr, amount)
