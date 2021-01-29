@@ -12,7 +12,6 @@
             type="primary"
             @click="respond(record, true)"
             ghost
-            :disabled="record.requestStatus"
           >
             同意
           </a-button>
@@ -22,7 +21,6 @@
             type="danger"
             @click="respond(record, false)"
             ghost
-            :disabled="record.requestStatus"
           >
             拒绝
           </a-button>
