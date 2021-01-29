@@ -239,14 +239,14 @@ export default {
     },
     addingMoneyConfirm () {
       if(this.amount > 0) {
-        api.administrator.deposite(this.addingAddr, this.addingAmount)
+        api.administrator.deposite(this.addingAddr, this.amount)
           .then(() => {
             this.$message.success('操作成功')
             this.addingMoney = false
             this.getAllBanks()
           })
       } else {
-        api.administrator.withdraw(this.addingAddr, -this.addingAmount)
+        api.administrator.withdraw(this.addingAddr, -this.amount)
           .then(() => {
             this.$message.success('操作成功')
             this.addingMoney = false

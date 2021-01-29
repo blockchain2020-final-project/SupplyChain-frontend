@@ -27,11 +27,15 @@ export function createFinance (body: any) {
 }
 
 export function getAllFinances (addr: string) {
-  return http.get(`${api.getAllFinance}/${addr}/finances`)
+  return http.get(`${api.getAllFinance}/${addr}/unpaidfinances`)
 }
 
 export function getAllReceipts (addr: string) {
-  return http.get(`${api.getAllReceipts}/${addr}/receipts`)
+  return http.get(`${api.getAllReceipts}/${addr}/unsettledreceipts`)
+}
+
+export function getAllReceiptsShouldPaid (addr: string) {
+  return http.get(`${api.getAllReceipts}/${addr}/unpaidreceipts`)
 }
 
 export function createTransactionNew (body: any) {

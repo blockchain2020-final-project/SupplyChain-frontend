@@ -81,10 +81,10 @@ export default {
       ]
     }
   },
+  mounted () {
+    this.fetch()
+  },
   methods: {
-    mounted () {
-      this.fetch()
-    },
     fetch () {
       api.bank.getAllFinances(this.$store.state.username)
         .then(res => {

@@ -2,13 +2,22 @@
   <div>
     <div style="height: 40px">
       <a-row>
-        <a-col :span="3" :offset="21">
+        <a-col :span="3" :offset="18">
           <a-button
             type="primary"
             icon="plus"
             @click="addFinance()"
           >
             申请贷款
+          </a-button>
+        </a-col>
+        <a-col :span="3">
+          <a-button
+            type="primary"
+            icon="minus"
+            @click="() => paying = true"
+          >
+            归还贷款
           </a-button>
         </a-col>
       </a-row>
@@ -40,12 +49,28 @@
       <a-input placeholder="使用的已有的应收账单地址" v-model="oriReceiptId"/>
       <p></p>
     </a-modal>
+
+    <a-modal
+      v-model="paying"
+      title="归还贷款"
+      @ok="payingConfirm"
+      :maskClosable="false"
+      :destroyOnClose="true"
+    >
+      <a-input placeholder="收款方地址" v-model="addr"/>
+      <p></p>
+      <a-input placeholder="还款账单Id" v-model="id"/>
+      <p></p>
+      <a-input placeholder="还款额度" v-model="amount"/>
+      <p></p>
+    </a-modal>
   </div>
 </template>
 
 <script>
 import api from '@/api'
 import * as Identity from '@/util/identity'
+import http from '@/util/http'
 
 export default {
   name: 'CoreCompanyFinance',
@@ -93,7 +118,10 @@ export default {
       amount: 0,
       deadline: 0,
       oriReceiptId: '',
-      info: ''
+      info: '',
+      paying: false,
+      addr: '',
+      id: ''
     }
   },
   computed: {
@@ -134,6 +162,10 @@ export default {
           oriReceiptId: this.oriReceiptId,
           info: this.info
         })
+          .then(() => {
+            this.$message.success('申请成功')
+            this.adding = false
+          })
       } else {
         api.company.createFinance({
           payeeAddr: this.payeeAddr,
@@ -142,6 +174,37 @@ export default {
           oriReceiptId: this.oriReceiptId,
           info: this.info
         })
+          .then(() => {
+            this.$message.success('申请成功')
+            this.adding = false
+          })
+      }
+    },
+    payingConfirm () {
+      if (this.isCoreCompany) {
+        http.post('core_companies/payreceipt', {
+          senderAddr: this.addr,
+          payerAddr: this.$store.state.username,
+          receiptId: this.id,
+          amount: this.amount,
+          isFinance: true
+        })
+          .then(() => {
+            this.$message.success('还款成功')
+            this.paying = false
+          })
+      } else {
+        http.post('companies/payreceipt', {
+          senderAddr: this.addr,
+          payerAddr: this.$store.state.username,
+          receiptId: this.id,
+          amount: this.amount,
+          isFinance: true
+        })
+          .then(() => {
+            this.$message.success('还款成功')
+            this.paying = false
+          })
       }
     }
   }

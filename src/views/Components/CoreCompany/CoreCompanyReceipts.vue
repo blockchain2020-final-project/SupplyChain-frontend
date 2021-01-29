@@ -20,16 +20,16 @@ export default {
         {
           title: 'Id',
           dataIndex: 'id',
-          width: '23%'
+          width: '10%'
         },
         {
-          title: '收款方地址',
-          dataIndex: 'debteeAddr',
-          width: '23%'
+          title: '付款方地址',
+          dataIndex: 'payerAddr',
+          width: '36%'
         },
         {
           title: '已还账款',
-          dataIndex: 'curAmount',
+          dataIndex: 'paidAmount',
           width: '8%'
         },
         {

@@ -45,6 +45,10 @@ export function getAllReceipt (addr: string) {
   return http.get(`${api.getAllReceipts}/${addr}/unsettledreceipts`)
 }
 
+export function getAllReceiptShouldPaid (addr: string) {
+  return http.get(`${api.getAllReceipts}/${addr}/unpaidreceipts`)
+}
+
 export function createFinance (body: any) {
   return http.post(api.createFinance, body)
 }

@@ -17,6 +17,26 @@
       :columns="tcolumns"
       :row-key="record => record.index"
       :data-source="transactions">
+      <span slot="action" slot-scope="text, record" v-if="record.requestStatus !== 1">
+        <a-config-provider :auto-insert-space-in-button="false">
+          <a-button
+            type="primary"
+            @click="confirm(record, true)"
+            ghost
+          >
+            同意
+          </a-button>
+        </a-config-provider>
+        <a-config-provider :auto-insert-space-in-button="false">
+          <a-button
+            type="danger"
+            @click="confirm(record, false)"
+            ghost
+          >
+            拒绝
+          </a-button>
+        </a-config-provider>
+      </span>
     </a-table>
     <a-modal
       v-model="adding"
@@ -44,6 +64,7 @@
 <script>
 import api from '@/api'
 import * as Identity from '@/util/identity'
+import http from '@/util/http'
 
 export default {
   name: 'CoreCompanyTransaction',
@@ -55,11 +76,11 @@ export default {
         {
           title: 'Id',
           dataIndex: 'id',
-          width: '7%'
+          width: '13%'
         },
         {
-          title: '销售方地址',
-          dataIndex: 'sellerAddr',
+          title: '发起方地址',
+          dataIndex: 'payerAddr',
           width: '30%'
         },
         {
@@ -70,22 +91,16 @@ export default {
         {
           title: '发起时间',
           dataIndex: 'createTime',
-          width: '15%'
-        },
-        {
-          title: '交易模式',
-          dataIndex: 'tMode',
-          width: '10%'
-        },
-        {
-          title: '应收账款Id',
-          dataIndex: 'oriReceiptId',
-          width: '15%'
+          width: '17%'
         },
         {
           title: '请求状态',
           dataIndex: 'requestStatus',
           width: '8%'
+        },
+        {
+          title: '操作',
+          scopedSlots: { customRender: 'action' }
         }
       ],
       otherAddr: '',
@@ -132,7 +147,7 @@ export default {
       this.adding = true
     },
     addingConfirm () {
-      if(this.oriReceiptId) {
+      if(!this.oriReceiptId) {
         if(this.isCoreCompany) {
           api.coreCompany.createTransactionNew({
             payeeAddr: this.otherAddr,
@@ -186,6 +201,34 @@ export default {
               this.fetch()
             })
         }
+      }
+    },
+    confirm (record, result) {
+      const respond = result ? 1 : 0
+      if (this.isCoreCompany) {
+        http.post('core_companies/transactionrespond', {
+          senderAddr: this.$store.state.username,
+          payerAddr: record.payerAddr,
+          transactionId: record.id,
+          respond
+        })
+          .then(() => {
+            this.$message.success('操作完成')
+            this.adding = false
+            this.fetch()
+          })
+      } else {
+        http.post('companies/transactionrespond', {
+          senderAddr: this.$store.state.username,
+          payerAddr: record.payerAddr,
+          transactionId: record.id,
+          respond
+        })
+          .then(() => {
+            this.$message.success('操作完成')
+            this.adding = false
+            this.fetch()
+          })
       }
     }
   }

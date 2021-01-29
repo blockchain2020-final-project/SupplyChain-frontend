@@ -95,7 +95,7 @@ export default {
       {
         key: '/home/core-company/transaction',
         icon: 'unordered-list',
-        description: '我的交易'
+        description: '交易请求'
       },
       {
         key: '/home/core-company/finance',
@@ -106,6 +106,11 @@ export default {
         key: '/home/core-company/receipt',
         icon: 'unordered-list',
         description: '应收账单'
+      },
+      {
+        key: '/home/core-company/receipt/shouldPaid',
+        icon: 'unordered-list',
+        description: '我的账单'
       }
     ]
   },
@@ -131,6 +136,11 @@ export default {
         key: '/home/company/receipt',
         icon: 'unordered-list',
         description: '应收账单'
+      },
+      {
+        key: '/home/company/receipt/shouldPaid',
+        icon: 'unordered-list',
+        description: '我的账单'
       }
     ]
   }

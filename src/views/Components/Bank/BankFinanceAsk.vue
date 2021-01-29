@@ -12,6 +12,7 @@
             type="primary"
             @click="respond(record, true)"
             ghost
+            :disabled="record.requestStatus"
           >
             同意
           </a-button>
@@ -21,6 +22,7 @@
             type="danger"
             @click="respond(record, false)"
             ghost
+            :disabled="record.requestStatus"
           >
             拒绝
           </a-button>
@@ -41,12 +43,12 @@ export default {
         {
           title: 'Id',
           dataIndex: 'id',
-          width: '5%'
+          width: '11%'
         },
         {
           title: '申请人',
           dataIndex: 'payeeAddr',
-          width: '25%'
+          width: '32%'
         },
         {
           title: '金额',
@@ -56,12 +58,17 @@ export default {
         {
           title: '发起时间',
           dataIndex: 'createTime',
-          width: '10%'
+          width: '13%'
         },
         {
           title: '应收账款Id',
           dataIndex: 'oriReceiptId',
-          width: '25%'
+          width: '11%'
+        },
+        {
+          title: 'Pass?',
+          dataIndex: 'requestStatus',
+          width: '8%'
         },
         {
           title: '操作',
@@ -85,7 +92,7 @@ export default {
       api.bank.response({
         respond: t,
         senderAddr: record.payeeAddr,
-        payerAddr: this.$store.state.username,
+        payerAddr: record.payerAddr,
         financeId: record.id
       })
         .then(() => {

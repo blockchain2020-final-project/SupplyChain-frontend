@@ -3,7 +3,7 @@
     <a-layout id="components-layout-demo-top-side-2">
       <a-layout-header id="layout-header">
         <span class="title">
-          ABCDEFG 供应链金融管理系统
+          供应链金融管理系统
         </span>
         <span class="user-controller">
           <a-dropdown>

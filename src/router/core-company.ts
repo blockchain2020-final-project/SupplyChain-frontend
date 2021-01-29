@@ -18,5 +18,10 @@ export default [
     path: '/home/core-company/receipt',
     name: 'CoreCompanyReceipt',
     component: () => import('@/views/Components/CoreCompany/CoreCompanyReceipts.vue')
+  },
+  {
+    path: '/home/core-company/receipt/shouldPaid',
+    name: 'CoreCompanyReceipt',
+    component: () => import('@/views/Components/CoreCompany/CoreCompanyReceiptsShouldPaid.vue')
   }
 ]
